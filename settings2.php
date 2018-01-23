@@ -32,7 +32,7 @@
         'general' => array(), // internal info, dev and program info
         'usersettings' => array(), // user changeable settings
         'monitorrsettings' => array(),
-        'services' => array(), //
+        'services' => array(),
     );
 
     if (isset($_GET['section'])) {
@@ -384,23 +384,38 @@
         ),
 
         // NEWEService script goes here:
-
-
-        'services' => array( 
-            'name' => 'services',
-            'Content' => 'test test test',
             
-            $monOutput['Content'] .= '	<div>'.PHP_EOL,
-            $monOutput['Content'] .= '	test'.PHP_EOL,
-            $monOutput['Content'] .= '	</div>'.PHP_EOL,
+        'services' => array(
+            'name' => 'services',
+            'description' => 'Services',
+            'settings' => array(
 
-             $monOutput = array(
-                'Content'   => '	test'.PHP_EOL,
-             ),
+                'Content' => 'test',
+
+                    /*                 
+                    $monOutput['Content'] .= '		<div class="col-md-4">'.PHP_EOL;
+                    $monOutput['Content'] .= '			<input class="btn btn-primary" type="submit" value="Submit">'.PHP_EOL;
+                    $monOutput['Content'] .= '		</div>'.PHP_EOL; 
+                    */
+
+                    /*                                      
+                        'updatebranch' => array( //DEVCHANGETHIS
+                            'name' => 'Update Branch',
+                            'help' => 'GitHub repository branch for updates',
+                            'type' => 'single_option',
+                            'options' => array(
+                                'Master' => 'Master', // DEVCHANGETHIS
+                                'develop' => 'Develop' // DEVCHANGETHIS
+                            ),
+                            'default' => 'master'
+                        ), 
+                    */
+                ),
 
          // NEWEService script goes ABOVE THIS
 
         ),
+    
     );
 
       
