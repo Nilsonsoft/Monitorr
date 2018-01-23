@@ -399,7 +399,7 @@
              ),
 
          // NEWEService script goes ABOVE THIS
-         
+
         ),
     );
 
@@ -677,75 +677,6 @@
 
                 }
 
-            /* 
-                case 'library_select': {
-
-                    if (empty($monConfiguration['plexserver']['domain'])) {
-                        $monErrors[count($monErrors)] = 'Please setup Plex Server first!';
-                    }
-                    else {
-
-                      
-                        if (isset($_SESSION['token'])) {
-                            $monConfiguration['plexserver']['token'] = $_SESSION['token'];
-                            $plex = new plexAPI($monConfiguration['plexserver'], $monConfiguration['general']);
-                        }
-                        else {
-                            $plex = new plexAPI($monConfiguration['plexserver'], $monConfiguration['general']);
-                            if (empty($plex->getToken())) {
-                                $monErrors[count($monErrors)] = 'No token received! Plex.tv not reachable or wrong credentials!';
-                            }
-                            else {
-                                $_SESSION['token'] = $plex->getToken();
-                            }
-                        }
-
-
-                       
-                        $mon_libraryindex = $plex->getIndex();
-                        if (empty($mon_libraryindex)) {
-                            $monErrors[count($monErrors)] = 'Plex server not reachable!';
-                        }
-                        else {
-                            if ($monConfiguration['libraries']['sort_order'] == 'SORT_ASC') {
-                                usort($mon_libraryindex['items'], make_comparer([$monConfiguration['libraries']['sort_by'], SORT_ASC], ['title', SORT_ASC]));
-                            }
-                            else {
-                                usort($mon_libraryindex['items'], make_comparer([$monConfiguration['libraries']['sort_by'], SORT_DESC], ['title', SORT_ASC]));
-                            }
-                            $monOutput['Content'] .= '	<fieldset class="form-group">'.PHP_EOL;
-                            $monOutput['Content'] .= '		<label class="col-md-1 control-label" for="'.$key.'">'.$value['name'].'</label>'.PHP_EOL;
-                            $monOutput['Content'] .= '		<div class="col-md-4">'.PHP_EOL;
-                            $monOutput['Content'] .= '			<div class="checkbox">'.PHP_EOL;
-                            $count = 0;
-                            foreach ($mon_libraryindex['items'] as $child) {
-                          
-                                    if (in_array($child['key'],$monConfiguration[$monConfigurationSection][$key])) {
-                                        $checked = ' checked';
-                                    }
-                                    else {
-                                        $checked = '';
-                                    }
-                                    $monOutput['Content'] .= '				<label for="'.$key.'-'.$count.'">'.PHP_EOL;
-                                    $monOutput['Content'] .= '				<input type="checkbox" name="'.$key.'[]" id="'.$key.'-'.$count.'" value="'.$child['key'].'"'.$checked.'>';
-                                    $monOutput['Content'] .= '				<i class="fa '.$monConfiguration['mediatypes'][$child['type']]['icon'].'"></i>&nbsp;&nbsp;';
-                                    $monOutput['Content'] .= $child['title'].'</label><br />'.PHP_EOL;
-                                    $count += 1;
-                            
-                            }
-
-                            $monOutput['Content'] .= '			</div>'.PHP_EOL;
-                            $monOutput['Content'] .= '			<span class="help-block">'.$value['help'].'</span>'.PHP_EOL;
-                            $monOutput['Content'] .= '		</div>'.PHP_EOL;
-                            $monOutput['Content'] .= '	</fieldset>'.PHP_EOL;
-
-                        }
-                    }
-                    $monSomethingToSave = true;
-                    break;
-
-                } 
-            */     
                     case 'single_option': {
                         $monOutput['Content'] .= '	<fieldset class="form-group">'.PHP_EOL;
                         $monOutput['Content'] .= '		<label class="col-md-1 control-label" for="'.$key.'">'.$value['name'].'</label>'.PHP_EOL;
