@@ -32,7 +32,7 @@
         'general' => array(), // internal info, dev and program info
         'usersettings' => array(), // user changeable settings
         'monitorrsettings' => array(),
-        'services' => array(), //
+       // 'services' => array(), //
     );
 
     if (isset($_GET['section'])) {
@@ -382,44 +382,29 @@
                 ),
             ),
         ),
-        'services' => array( // SERVICES TBD
-            'name' => 'Services',
-            'description' => 'Monitorr Services',
-            'settings' => array(
-                //EXAMPLE ONLY and thought process
-                'id' => array( // DEVCHANGETHIS
-                    'name' => 'id',
-                    'help' => 'sort number',
-                    'type' => 'string',
-                    'default' => '1'
-                ),
-                'name' => array( // DEVCHANGETHIS
-                    'name' => 'NAME OF APP',
-                    'help' => 'Name of APP',
-                    'type' => 'string',
-                    'default' => 'monitorr'
-                ),
-                'clickurl' => array( // DEVCHANGETHIS
-                    'name' => 'URL',
-                    'help' => 'enter the url that you wish to browse to',
-                    'type' => 'string',
-                    'default' => 'http://localhost/monitorr'
-                ),
-                'image' => array( // DEVCHANGETHIS
-                    'name' => 'Service Image',
-                    'help' => 'Image for your app. actualappname.png',
-                    'type' => 'string',
-                    'default' => 'monitorr.png'
-                ),
-                'pingurl' => array( // DEVCHANGETHIS
-                    'name' => 'Ping URL',
-                    'help' => 'enter your url you want test or the internal ip:port',
-                    'type' => 'string',
-                    'default' => 'http://localhost/monitorr'
-                ),
-            )
+
+        // NEWEService script goes here:
+
+
+        'services' => array( 
+            'name' => 'services',
+            'Content' => 'test test test',
+            
+            $monOutput['Content'] .= '	<div>'.PHP_EOL,
+            $monOutput['Content'] .= '	test'.PHP_EOL,
+            $monOutput['Content'] .= '	</div>'.PHP_EOL,
+
+             $monOutput = array(
+                'Content'   => '	test'.PHP_EOL,
+             ),
+
+         // NEWEService script goes ABOVE THIS
+         
         ),
     );
+
+      
+    
 //$mon_strings = array();
     $monErrors = array();
     $monOutput = array(
@@ -607,6 +592,18 @@
             $monOutput['Menu'] .= '<span class="fa fa-gear fa-lg"></span>&nbsp;&nbsp;';
             $monOutput['Menu'] .= $value['name'].'</a></li>'.PHP_EOL;
         }
+
+        // Construct NEW services page//WTF not working.
+        // $monOutput['Menu'] .= '<li class="mon_menu"><a href="'.MON_BASE_PATH.'"><i class="fa fa-gear fa-lg"></i>&nbsp;&nbsp;ServicesNEW</a></li>'.PHP_EOL; 	// REDIRECT TO NEW SERVICES TABLE
+        // $monOutput['Menu'] .= '<li class="mon_menu"><a href="'.MON_BASE_PATH.'?section='.$key.'"><i class="fa fa-gear fa-lg"></i>&nbsp;&nbsp;ServicesNEW</a></li>'.PHP_EOL; 	// REDIRECT TO NEW SERVICES TABLE
+        
+            if (!isset($_SESSION['loged-in'])) {
+
+                $monOutput['Content'] .= '		<div class="col-md-4">'.PHP_EOL;
+                $monOutput['Content'] .= '			<input class="btn btn-primary" type="submit" value="Submit">'.PHP_EOL;
+                $monOutput['Content'] .= '		</div>'.PHP_EOL;
+            }
+
         $monOutput['Menu'] .= '<li class="mon_menu"><a href="'.MON_BASE_PATH.'?logout=1"><i class="fa fa-sign-out fa-lg"></i>&nbsp;&nbsp;Log out</a></li>'.PHP_EOL;
         $monOutput['Menu'] .= '<li class="mon_menu"><a href="index.php"><i class="fa fa-home fa-lg"></i>&nbsp;&nbsp;Back to Frontend</a></li>'.PHP_EOL;
 
@@ -619,7 +616,6 @@
             else {
                 $setting_value = $value['default'];
             }
-
 
             switch ($value['type']) {
                 case 'string': {
