@@ -32,7 +32,7 @@
         'general' => array(), // internal info, dev and program info
         'usersettings' => array(), // user changeable settings
         'monitorrsettings' => array(),
-       // 'services' => array(), //
+        'services' => array(), //
     );
 
     if (isset($_GET['section'])) {
