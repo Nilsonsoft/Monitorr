@@ -137,7 +137,7 @@
                         "(GMT-03:30) Newfoundland" 	=>	'Canada/Newfoundland' ,
                         "(GMT-03:00) Buenos Aires" 	=>	'America/Buenos_Aires' ,
                         "(GMT-03:00) Greenland" 	=>	'Greenland' ,
-                        "(GMT-02:00) Stanley" 	=>	'Atlantic/Stanley', 
+                        "(GMT-02:00) Stanley" 	=>	'Atlantic/Stanley',
                         "(GMT-01:00) Azores" 	=>	'Atlantic/Azores' ,
                         "(GMT-01:00) Cape Verde Is." 	=>	'Atlantic/Cape_Verde' ,
                         "(GMT) Casablanca" 	=>	'Africa/Casablanca' ,
@@ -233,8 +233,8 @@
                     'help' => '12 hour or 24 hour clock display',
                     'type' => 'single_option',
                     'options' => array(
-                        'True (12 hour)' => 'true', 
-                        'False (24 hour)' => 'false', 
+                        'True (12 hour)' => 'true',
+                        'False (24 hour)' => 'false',
                     ),
                     'default' => 'false',
                 ),
@@ -386,25 +386,25 @@
         // NEWEService script goes here:
 
 
-        'services' => array( 
+        'services' => array(
             'name' => 'services',
-            'Content' => 'test test test',
-            
-            $monOutput['Content'] .= '	<div>'.PHP_EOL,
-            $monOutput['Content'] .= '	test'.PHP_EOL,
-            $monOutput['Content'] .= '	</div>'.PHP_EOL,
-
-             $monOutput = array(
-                'Content'   => '	test'.PHP_EOL,
-             ),
+            'description' => 'User Services',
+            'settings' => array(
+              'Service' => array( // DEVCHANGETHIS
+                  'name' => 'Title Example',
+                  'help' => 'Fill In your ',
+                  'type' => 'table',
+                  'default' => '10000',
+              ),
+            ),
 
          // NEWEService script goes ABOVE THIS
 
         ),
     );
 
-      
-    
+
+
 //$mon_strings = array();
     $monErrors = array();
     $monOutput = array(
@@ -533,7 +533,7 @@
                 }
             }
         }
-    
+
 	// EMPTY SETTINGS - ESTABLISH ADMIN PASSWORD
         if (empty($monConfiguration['usersettings']['admin_password'])) {
             $monOutput['Content'] .= '<form class="form-horizontal" action="'.MON_BASE_PATH.'" method="post">'.PHP_EOL;
@@ -596,7 +596,7 @@
         // Construct NEW services page//WTF not working.
         // $monOutput['Menu'] .= '<li class="mon_menu"><a href="'.MON_BASE_PATH.'"><i class="fa fa-gear fa-lg"></i>&nbsp;&nbsp;ServicesNEW</a></li>'.PHP_EOL; 	// REDIRECT TO NEW SERVICES TABLE
         // $monOutput['Menu'] .= '<li class="mon_menu"><a href="'.MON_BASE_PATH.'?section='.$key.'"><i class="fa fa-gear fa-lg"></i>&nbsp;&nbsp;ServicesNEW</a></li>'.PHP_EOL; 	// REDIRECT TO NEW SERVICES TABLE
-        
+
             if (!isset($_SESSION['loged-in'])) {
 
                 $monOutput['Content'] .= '		<div class="col-md-4">'.PHP_EOL;
@@ -698,10 +698,98 @@
                         $monSomethingToSave = true;
                         break;
                     }
+
+                    case 'table': {
+                      $monOutput['Content'] .= '
+                      <fieldset class="form-group">
+                      <label class="col-sm-1 control-label" for="'.$key.'">'.$value['name'].'</label>
+                      <div class="col-md-8">
+
+<table id="example" class="display" cellspacing="0" width="100%">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Click URL</th>
+                <th>Ping IP</th>
+                <th>Ping Port</th>
+                <th>Image</th>
+            </tr>
+            <tr>
+                <th>Example Name</th>
+                <th>http://domain.com/appname</th>
+                <th>http://localhost</th>
+                <th>80</th>
+                <th>Sample.png</th>
+            </tr>
+        </thead>
+        <!-- i cant believe this comment out works lol
+        <tfoot>
+            <tr>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Phone #</th>
+                <th>Location</th>
+            </tr>
+        </tfoot> --!>
+    </table>
+    <script type="text/javascript">
+    var editor; // use a global for the submit and return data rendering in the examples
+
+    $(document).ready(function() {
+        editor = new $.fn.dataTable.Editor( {
+            ajax: "../php/join.php",
+            table: "#example",
+            fields: [ {
+                    label: "Name",
+                    name: "service.name"
+                }, {
+                    label: "Click URL",
+                    name: "service.clickurl"
+                }, {
+                    label: "Ping IP",
+                    name: "service.pingip"
+                }, {
+                    label: "Ping Port",
+                    name: "service.pingport"
+                }, {
+                    label: "Image",
+                    name: "service.image"
+                }
+            ]
+        } );
+
+        $("#example").DataTable( {
+            dom: "Bfrtip",
+            ajax: {
+                url: "../php/join.php",
+                type: "POST"
+            },
+            columns: [
+                { data: "users.first_name" },
+                { data: "users.last_name" },
+                { data: "users.phone" },
+                { data: "sites.name" }
+            ],
+            select: true,
+            buttons: [
+                { extend: "create", editor: editor },
+                { extend: "edit",   editor: editor },
+                { extend: "remove", editor: editor }
+            ]
+        } );
+    } );
+</script>
+                      '.'
+                      <!--span class="help-block">'.$value['help'].'</span--!>
+                      </div>
+                      </fieldset>'.PHP_EOL;
+                      $monSomethingToSave = true;
+                      break;
+                    }
                     default: {
 
-                    } 
-                
+                    }
+
             }
         }
 
@@ -729,7 +817,7 @@
 
 
     // Constructing the error messages
-    
+
         if (!empty($monErrors)){
         foreach ($monErrors as $details) {
         $monOutput['Errors'] .= '<div class="monErrors alert alert-danger"><strong>Error:</strong> '.$details.'</div>'.PHP_EOL;
@@ -747,7 +835,7 @@
         $output->set($key, $content);
         }
         echo $output->output();
-    
- 
+
+
 
 ?>

@@ -4,11 +4,16 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>[@Title]</title>
-	
+
 	<link rel="shortcut icon" href="favicon.ico">
 	<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css" />
 	<link rel="stylesheet" type="text/css" href="assets/css/local.css" />
-
+	<!--datatables!!! -->
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/fixedcolumns/3.2.4/css/fixedColumns.jqueryui.min.css">
+	<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="https://cdn.datatables.net/1.10.16/js/dataTables.jqueryui.min.js"></script>
+	<script type="text/javascript" src="https://cdn.datatables.net/fixedcolumns/3.2.4/js/dataTables.fixedColumns.min.js"></script>
 	<script type="text/javascript" src="assets/js/jquery-1.10.2.min.js"></script>
 	<script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
 [@Include]
@@ -24,7 +29,7 @@
 					<span class="icon-bar"></span>
 				</button>
 				<div class="navbar-brand">[@Title]</div>
-				
+
 			</div>
 			<div class="collapse navbar-collapse navbar-ex1-collapse">
 				<ul id="active" class="nav navbar-nav side-nav">
@@ -39,7 +44,7 @@
 				<div class="col-lg-12">
 				<!-- CONTENT -->
 [@Errors]
-[@Content]		
+[@Content]
 				</div>
 			</div>
 		</div>
